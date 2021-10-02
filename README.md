@@ -9,9 +9,12 @@ Theme: Unstable
 - Room with wood to chop
 - Score is time that you've lasted
 - Complete actions by pressing various keyboard keys in the right order
+- Shaking and coloring effect for failing rooms
+- Something to indicate that you've hit max fix time
 
-## TODO
+## To do
 - [ ] Make own sounds
+- [ ] Something to indicate how close room is to collapsing
 - [ ] Make own music
 - [ ] Create wood chopping room
 - [ ] Room creation system
