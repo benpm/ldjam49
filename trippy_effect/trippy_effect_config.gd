@@ -5,9 +5,6 @@ var viewport_script: Script = preload("res://trippy_effect/viewport_fit.gd")
 var texrect_script: Script = preload("res://trippy_effect/texrect_fit.gd")
 var effect_material: Material = preload("res://trippy_effect/trippy_material.tres")
 
-# Integer resolution handler object
-onready var ires_obj: IntegerResolutionHandler = $"/root/IntegerResolutionHandler" 
-
 # Pass to shader
 export(float) var shader_dissipate = 1.0
 
@@ -15,7 +12,7 @@ func _ready() -> void:
 	assert($main_camera, "must have a Camera2D node called 'main_camera'")
 	var camera: Camera2D = $main_camera
 	# Initial viewport size
-	var isize: Vector2 = get_viewport().size / ires_obj.scale
+	var isize: Vector2 = get_viewport().size
 	
 	# Add the scene viewport to hold everything in the scene
 	var scene_viewport: Viewport = Viewport.new()
@@ -63,8 +60,6 @@ func _ready() -> void:
 	effect.material.set_shader_param("dissipate", shader_dissipate)
 	effect.name = "effect"
 	scene_viewport.add_child(effect)
-	
-	print_tree_pretty()
 
 func _process(delta: float) -> void:
 	pass
