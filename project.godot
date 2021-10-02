@@ -28,6 +28,10 @@ config/icon="res://icon.png"
 
 aseprite_executable_path="/usr/bin/aseprite"
 
+[audio]
+
+default_bus_layout="res://audiobuslayout.tres"
+
 [debug]
 
 settings/stdout/print_fps=true

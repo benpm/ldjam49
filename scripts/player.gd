@@ -32,7 +32,6 @@ func _process(_delta: float) -> void:
 		if vel.x == 0:
 			sprite.frame = 0
 		if sprite.frame == 1 and not stepped:
-			sounds.play("walk")
 			stepped = true
 		elif sprite.frame != 1:
 			stepped = false
@@ -40,10 +39,14 @@ func _process(_delta: float) -> void:
 		sprite.animation = "fall"
 	if abs(vel.x) > 0:
 		sprite.flip_h = vel.x < 0
-	
+	if abs(vel.x) > 0.1 and vel.y == 0.0:
+		sounds.unpause("run")
+	else:
+		sounds.pause("run")
+
 	# Fall through one-way platforms
 	if Input.is_action_just_pressed("fall"):
-		if !test_move(transform, Vector2(0, 48)):
+		if not test_move(transform, Vector2(0, 72)):
 			position.y += 2
 		if vel.y != 0:
 			vel.y = 6
@@ -53,6 +56,7 @@ func _process(_delta: float) -> void:
 		death()
 
 func _physics_process(_delta: float) -> void:
+
 	# Move left and right
 	if Input.is_action_pressed("right"):
 		vel.x = movespeed
@@ -63,7 +67,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# Set velocity to zero on ground
 	if is_on_floor():
-		if pvel.y > gravity:
+		if pvel.y > gravity + 0.1:
 			sounds.play("land")
 		vel.y = 0
 		jumps = 2
