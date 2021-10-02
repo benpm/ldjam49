@@ -112,6 +112,7 @@ Vector2( 3, 9 ): "kill"
 extents = Vector2( 256, 128 )
 
 [node name="room" type="Node2D"]
+z_index = -1
 script = ExtResource( 7 )
 
 [node name="tilemap_fg" type="TileMap" parent="."]

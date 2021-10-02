@@ -62,6 +62,14 @@ window/stretch/aspect="expand"
 
 enabled=PoolStringArray( "res://addons/AsepriteAnimationImporter/plugin.cfg" )
 
+[importer_defaults]
+
+aseprite_animation_importer={
+"default_direction": "Forward",
+"default_loop": true,
+"extrude": false
+}
+
 [input]
 
 left={

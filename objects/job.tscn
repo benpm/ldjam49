@@ -16,10 +16,10 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
-position = Vector2( 0, 16 )
 frames = ExtResource( 1 )
 animation = "chop_wood"
 frame = 8
+playing = true
 
 [node name="instructions" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -32 )

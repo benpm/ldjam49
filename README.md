@@ -13,6 +13,7 @@ Theme: Unstable
 - Something to indicate that you've hit max fix time
 - Tapping tasks should replenish timer as fast as you can tap
 - Room with floatation tank: press button to add water to prevent bob from hitting bottom as water slowly leaks.
+- Object which can sometimes appear (hourglass) which shows time til next room appear
 - 
 - Name ideas:
   - Psychogoat Collapse
@@ -23,6 +24,7 @@ Theme: Unstable
 - [ ] Room creation system
 - [ ] Mute buttons
 - [ ] Better art
+- [ ] Room shaking animation using a shader
 - [ ] Fix special fx
 - [ ] Screen shake and warning sound when room about to collapse
 - [ ] Come up with name
