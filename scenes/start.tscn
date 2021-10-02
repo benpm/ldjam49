@@ -1,23 +1,14 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
 [ext_resource path="res://art/player.ase" type="SpriteFrames" id=3]
-[ext_resource path="res://sprites/tiles.png" type="Texture" id=4]
-[ext_resource path="res://scripts/tileset_extras.gd" type="Script" id=5]
+[ext_resource path="res://objects/rooms/room_basic.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/rooms/room_wide.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/game.gd" type="Script" id=6]
-[ext_resource path="res://sounds/jump1.ogg" type="AudioStream" id=7]
-[ext_resource path="res://sounds/click1.ogg" type="AudioStream" id=8]
-[ext_resource path="res://scripts/sounds.gd" type="Script" id=9]
-[ext_resource path="res://sounds/run.ogg" type="AudioStream" id=10]
-[ext_resource path="res://sounds/lose4.ogg" type="AudioStream" id=11]
 [ext_resource path="res://music.ogg" type="AudioStream" id=12]
 [ext_resource path="res://particles_clouds.tres" type="Material" id=13]
 [ext_resource path="res://sprites/cloud1-Sheet.png" type="Texture" id=14]
-[ext_resource path="res://scripts/room.gd" type="Script" id=15]
-[ext_resource path="res://objects/job.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sprites/prog_bg.png" type="Texture" id=17]
-[ext_resource path="res://sprites/prog_fg.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.9941, 14.3806 )
@@ -27,110 +18,6 @@ particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 3
 particles_anim_loop = true
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="TileSet" id=11]
-0/name = "tiles.png 0"
-0/texture = ExtResource( 4 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 1, 1, 270, 270 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 32, 32 )
-0/autotile/spacing = 2
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 3 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 3, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 4, 0 ),
-"one_way": true,
-"one_way_margin": 1.0,
-"shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 5, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 6, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 9 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 7, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-script = ExtResource( 5 )
-damageTiles = {
-Vector2( 2, 6 ): "kill",
-Vector2( 3, 9 ): "kill"
-}
-
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 128, 128 )
 
 [node name="scene" type="Node2D"]
 z_index = 2
@@ -162,26 +49,6 @@ points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 1.0
 default_color = Color( 0.811765, 0.2, 0.2, 1 )
 
-[node name="sounds" type="Node" parent="."]
-script = ExtResource( 9 )
-
-[node name="jump" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource( 7 )
-bus = "sound fx"
-
-[node name="run" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource( 10 )
-bus = "sound fx"
-
-[node name="land" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource( 8 )
-bus = "sound fx"
-
-[node name="die" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource( 11 )
-volume_db = -7.241
-bus = "sound fx"
-
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -6.667
@@ -198,46 +65,13 @@ visibility_rect = Rect2( 0, -500, 2000, 1000 )
 process_material = ExtResource( 13 )
 texture = ExtResource( 14 )
 
-[node name="room" type="Node2D" parent="."]
-script = ExtResource( 15 )
+[node name="room_wide" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 256 )
 
-[node name="tilemap_fg" type="TileMap" parent="room"]
-tile_set = SubResource( 11 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( -196612, 0, 0, -196611, 0, 1, -196610, 0, 4, -196609, 0, 4, -262144, 0, 4, -262143, 0, 4, -262142, 0, 0, -262141, 0, 1, -131076, 0, 2, -196605, 0, 2, -65540, 0, 2, -131069, 0, 2, -4, 0, 2, -65533, 0, 2, 262140, 0, 3, 262141, 0, 0, 262142, 0, 4, 262143, 0, 4, 196608, 0, 4, 196609, 0, 4, 196610, 0, 1, 196611, 0, 0 )
-
-[node name="area" type="Area2D" parent="room"]
-
-[node name="area_shape" type="CollisionShape2D" parent="room/area"]
-shape = SubResource( 12 )
-
-[node name="task_chop" parent="room" instance=ExtResource( 16 )]
-position = Vector2( 0, 64 )
-
-[node name="vanish_timer" type="Timer" parent="room"]
-wait_time = 15.0
-one_shot = true
-autostart = true
-
-[node name="progress" type="TextureProgress" parent="room"]
-margin_left = -128.0
-margin_top = -128.0
-margin_right = -88.0
-margin_bottom = -88.0
-rect_pivot_offset = Vector2( 24, 72 )
-max_value = 30.0
-value = 15.0
-texture_under = ExtResource( 17 )
-texture_progress = ExtResource( 18 )
-fill_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="room_basic" parent="." instance=ExtResource( 4 )]
 
 [node name="create_room_timer" type="Timer" parent="."]
 wait_time = 30.0
 autostart = true
 
-[connection signal="timeout" from="room/vanish_timer" to="room" method="_on_vanish_timer_timeout"]
 [connection signal="timeout" from="create_room_timer" to="." method="_on_create_room_timer_timeout"]

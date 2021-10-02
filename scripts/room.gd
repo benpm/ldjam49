@@ -15,10 +15,14 @@ func _ready():
 	modulate.h = hue
 
 func _process(_delta):
+	if Engine.editor_hint:
+		modulate = Color.white
+		return
+
 	var t = timer.time_left
 	modulate.h = hue
-	modulate.v = 0.2 + t / 30.0
-	modulate.s = 0.2 + min(1, t / 5.0)
+	modulate.v = clamp(0.2 + t / 30.0, 0.4, 1.0)
+	modulate.s = clamp(t / 10.0, 0.0, 0.7)
 	progress.value = t
 	# if t < 5.0:
 	# 	var tt = 0.5 - (t / 5.0)

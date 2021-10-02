@@ -13,4 +13,4 @@ dest_files=[ "res://.import/ui.ase-0162c9979b3ab777cb62c62979efbb6a.res" ]
 
 extrude=false
 default_direction="Forward"
-default_loop=false
+default_loop=true

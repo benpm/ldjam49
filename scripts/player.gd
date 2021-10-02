@@ -6,23 +6,19 @@ export(float) var movespeed: float = 8.0
 export(float) var gravity: float = 0.35
 export(float) var jumpvel: float = 6
 
+onready var sprite: AnimatedSprite = $sprite
+onready var maxy: float = $"/root/scene/world_bottom".position.y;
+
+onready var initpos: Vector2 = position
 var vel: Vector2 = Vector2(0, 0)
 var pvel: Vector2
 var jumps: int = 0
-var sprite: AnimatedSprite
-var maxy: float
-var initpos: Vector2
 var on_one_way: bool
-var sounds: Sounds
 var landed: bool
 var stepped: bool
 
 func _ready() -> void:
-	sprite = get_child(1)
-	sounds = get_node("/root/scene/sounds")
-	assert(sounds != null)
-	maxy = get_node("/root/scene/world_bottom").position.y
-	initpos = position
+	pass
 
 func _process(_delta: float) -> void:
 	# Control animation
@@ -41,13 +37,13 @@ func _process(_delta: float) -> void:
 	if abs(vel.x) > 0:
 		sprite.flip_h = vel.x < 0
 	if abs(vel.x) > 0.1 and vel.y == 0.0:
-		sounds.unpause("run")
+		Sounds.unpause("run", position)
 	else:
-		sounds.pause("run")
+		Sounds.pause("run", position)
 
 	# Fall through one-way platforms
 	if Input.is_action_just_pressed("fall"):
-		if not test_move(transform, Vector2(0, 72)):
+		if not test_move(transform, Vector2(0, 130)):
 			position.y += 2
 		if vel.y != 0:
 			vel.y = 6
@@ -69,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 	# Set velocity to zero on ground
 	if is_on_floor():
 		if pvel.y > gravity + 0.1:
-			sounds.play("land")
+			Sounds.play("hit1", position)
 		vel.y = 0
 		jumps = 2
 	else:
@@ -81,7 +77,10 @@ func _physics_process(_delta: float) -> void:
 		jumps -= 1
 		sprite.speed_scale = 1
 		sprite.play("jump")
-		sounds.play("jump")
+		if jumps == 1:
+			Sounds.play("jump1", position)
+		else:
+			Sounds.play("jump2", position)
 	
 	# Terminal velocity
 	vel.y = min(vel.y, maxfall)
@@ -100,4 +99,4 @@ func _physics_process(_delta: float) -> void:
 
 func death():
 	position = initpos
-	sounds.play("die")
+	Sounds.play("die", position)

@@ -13,4 +13,4 @@ dest_files=[ "res://.import/player.ase-5e13dfc7a9d9aee0c6e2ffabcab00ca8.res" ]
 
 extrude=false
 default_direction="Forward"
-default_loop=false
+default_loop=true

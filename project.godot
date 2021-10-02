@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/room.gd"
 }, {
-"base": "Node",
-"class": "Sounds",
-"language": "GDScript",
-"path": "res://scripts/sounds.gd"
-}, {
 "base": "Area2D",
 "class": "Task",
 "language": "GDScript",
@@ -32,7 +27,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Player": "",
 "Room": "",
-"Sounds": "",
 "Task": ""
 }
 
@@ -49,6 +43,10 @@ aseprite_executable_path="/usr/bin/aseprite"
 [audio]
 
 default_bus_layout="res://audiobuslayout.tres"
+
+[autoload]
+
+Sounds="*res://scripts/sound_controller.gd"
 
 [debug]
 

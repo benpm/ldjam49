@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://art/things.ase" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/task.gd" type="Script" id=2]
+[ext_resource path="res://art/ui.ase" type="SpriteFrames" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 32 )
@@ -18,7 +19,14 @@ modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
 position = Vector2( 0, 16 )
 frames = ExtResource( 1 )
 animation = "chop_wood"
-frame = 1
+frame = 8
+
+[node name="instructions" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -32 )
+frames = ExtResource( 3 )
+animation = "hold_E"
+frame = 3
+playing = true
 
 [connection signal="body_entered" from="." to="." method="_on_entered"]
 [connection signal="body_exited" from="." to="." method="_on_exited"]

@@ -2,12 +2,18 @@ extends Area2D
 class_name Task
 
 onready var sprite: AnimatedSprite = $"sprite"
-onready var room = find_parent("room")
+onready var room = find_parent("room*")
 
 var doing: bool = false setget set_doing
 var active: bool = false
 
-const fixrate: float = 5.0
+const fixrate: float = 1.0
+
+func _ready():
+	$"instructions".play()
+	$"instructions".frames.set_animation_loop($"instructions".animation, true)
+	$"sprite".stop()
+	$"sprite".frames.set_animation_loop($"sprite".animation, true)
 
 func _process(delta):
 	if active:
@@ -16,13 +22,17 @@ func _process(delta):
 		if Input.is_action_just_released("interact_primary"):
 			set_doing(false)
 	if doing:
-		room.timer.start(min(30.0, room.timer.time_left + fixrate * delta))
+		if sprite.frame == 0:
+			room.timer.start(min(30.0, room.timer.time_left + fixrate))
+			Sounds.play("hit1", position)
 
 func set_doing(v: bool):
 	if v != doing:
 		doing = v
 		if doing:
 			sprite.play()
+			if room.timer.time_left < 1:
+				room.timer.start(1)
 		else:
 			sprite.stop()
 			
