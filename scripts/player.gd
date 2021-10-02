@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 export(float) var maxfall: float = 16.0
 export(float) var movespeed: float = 8.0

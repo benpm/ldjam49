@@ -8,7 +8,7 @@ var effect_material: Material = preload("res://trippy_effect/trippy_material.tre
 # Pass to shader
 export(float) var shader_dissipate = 1.0
 
-func _ready() -> void:
+func init_effect() -> void:
 	assert($main_camera, "must have a Camera2D node called 'main_camera'")
 	var camera: Camera2D = $main_camera
 	# Initial viewport size
@@ -61,5 +61,20 @@ func _ready() -> void:
 	effect.name = "effect"
 	scene_viewport.add_child(effect)
 
-func _process(delta: float) -> void:
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	init_effect()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+
+# Called on room creation
+func _on_create_room_timer_timeout():
 	pass

@@ -15,6 +15,13 @@ Theme: Unstable
 - [ ] Make own music
 - [ ] Create wood chopping room
 - [ ] Room creation system
+- [ ] Mute buttons
+- [ ] Better art
+- [ ] Fix special fx
+
+## Stretch
+- [ ] Live leaderboard
+- [ ] Menu
 
 ## Stuff Used
 All assets (eventually) made by me within 48 compo period. I did use these things to help me make the game:
