@@ -20,10 +20,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="hell"
-config/description="platformer for masochists"
+config/name="LDJAM49"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
+
+[aseprite_animation_importer]
+
+aseprite_executable_path=""
 
 [autoload]
 
@@ -43,7 +46,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "integer_resolution_handler" )
+enabled=PoolStringArray( "res://addons/AsepriteAnimationImporter/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
 
 [input]
 
