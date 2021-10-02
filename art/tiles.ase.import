@@ -2,11 +2,13 @@
 
 importer="aseprite_animation_importer"
 type="SpriteFrames"
-valid=false
+path="res://.import/tiles.ase-58371e4062ecf331ccc7fb2868b9b72e.res"
 
 [deps]
 
 source_file="res://art/tiles.ase"
+dest_files=[ "res://.import/tiles.ase-58371e4062ecf331ccc7fb2868b9b72e.res" ]
+
 [params]
 
 extrude=false

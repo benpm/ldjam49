@@ -1,10 +1,14 @@
 extends KinematicBody2D
 
+export(float) var maxfall: float = 16.0
+export(float) var movespeed: float = 8.0
+export(float) var gravity: float = 0.35
+export(float) var jumpvel: float = 6
+
 var vel: Vector2 = Vector2(0, 0)
 var pvel: Vector2
 var jumps: int = 0
 var sprite: AnimatedSprite
-const maxvel: float = 8.0
 var maxy: float
 var initpos: Vector2
 var on_one_way: bool
@@ -19,7 +23,7 @@ func _ready() -> void:
 	maxy = get_node("/root/scene/world_bottom").position.y
 	initpos = position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Control animation
 	if abs(vel.y) < 0.1:
 		if sprite.animation != "run":
@@ -48,34 +52,34 @@ func _process(delta: float) -> void:
 	if position.y > maxy:
 		death()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Move left and right
 	if Input.is_action_pressed("right"):
-		vel.x = 4
+		vel.x = movespeed
 	elif Input.is_action_pressed("left"):
-		vel.x = -4
+		vel.x = -movespeed
 	else:
 		vel.x = 0
 	
 	# Set velocity to zero on ground
 	if is_on_floor():
-		if pvel.y > 0.35:
+		if pvel.y > gravity:
 			sounds.play("land")
 		vel.y = 0
 		jumps = 2
 	else:
-		vel.y += 0.35
+		vel.y += gravity
 	
 	# Jump
 	if Input.is_action_just_pressed("jump") and jumps > 0:
-		vel.y = -6
+		vel.y = -jumpvel
 		jumps -= 1
 		sprite.speed_scale = 1
 		sprite.play("jump")
 		sounds.play("jump")
 	
 	# Terminal velocity
-	vel.y = min(vel.y, maxvel)
+	vel.y = min(vel.y, maxfall)
 	
 	# Collision
 	pvel = vel
