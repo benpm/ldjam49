@@ -15,3 +15,9 @@ Theme: Unstable
 - [ ] Make own music
 - [ ] Create wood chopping room
 - [ ] Room creation system
+
+## Stuff Used
+All assets (eventually) made by me within 48 compo period. I did use these things to help me make the game:
+- https://github.com/nklbdev/godot-aseprite-animation-importer
+- Godot engine
+- https://github.com/marketplace/actions/godot-ci
