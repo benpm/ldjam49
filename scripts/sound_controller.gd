@@ -24,7 +24,6 @@ func _ready() -> void:
 			player.bus = "sound fx"
 			player.attenuation = 2.0
 			sounds[bname] = player
-			print_debug(bname)
 			soundFX.add_child(player)
 		fname = audio_dir.get_next()
 

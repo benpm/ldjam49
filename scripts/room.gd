@@ -23,7 +23,6 @@ func _ready():
 	bar_over.max_value = Global.max_timer_len
 	bar_over.value = bar_over.max_value
 	get_parent().position = room_loc * Global.rtile_size
-	print_debug("place room ", get_parent().name, room_loc, room_size, get_parent().position)
 
 func _process(delta):
 	if Engine.editor_hint:
@@ -47,7 +46,6 @@ func set_room_extents():
 		push_warning("room not ready")
 
 func _on_vanish_timer_timeout():
-	print_debug("_on_vanish_timer_timeout()")
 	Global.game.remove_room(get_parent())
 	# TODO: make explody sound
 	# TODO: vanish animation

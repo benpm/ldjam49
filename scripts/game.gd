@@ -76,12 +76,12 @@ func _ready():
 	rooms_dir.list_dir_begin(true, true)
 	var fname = rooms_dir.get_next()
 	while fname:
-		print_debug(fname)
 		if fname.get_extension() == "tscn":
 			var room_packed: PackedScene = load("res://objects/rooms/" + fname)
 			rooms.append(room_packed)
 		fname = rooms_dir.get_next()
 	$create_room_timer.start(Global.room_spawn_interval)
+	print_debug(rooms)
 	
 	# Create init room
 	randomize()
@@ -101,16 +101,13 @@ func _process(_delta):
 
 # Called on room creation
 func _on_create_room_timer_timeout():
-	print_debug("_on_create_room_timer_timeout")
 	var room_packed: PackedScene = rooms[randi() % rooms.size()]
 	var room_node = room_packed.instance()
 	var room = room_node.get_node("room_common")
-	print_debug("room instantiated size: ", room.room_size)
 	# Search for location to place new room
 	var placed = false
 	var locs = placed_rooms.keys()
 	if locs.size() == 0:
-		print_debug("no place rooms left")
 		return
 	var candirs = [
 		Vector2(1, -1),
@@ -127,6 +124,8 @@ func _on_create_room_timer_timeout():
 		candirs.shuffle()
 		for dir in candirs:
 			var cl = sl + dir
+			if cl.y * Global.rtile_size > 400:
+				continue
 			var rs = room.room_size
 			var placeable = true
 			for rx in range(cl.x, cl.x + rs.x):
@@ -145,7 +144,6 @@ func _on_create_room_timer_timeout():
 func place_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
 	var loc = room.room_loc
-	print_debug("game place room ", room_node.name, room.room_loc, room.room_size)
 	for rx in range(loc.x, loc.x + room.room_size.x):
 		for ry in range(loc.y, loc.y + room.room_size.y):
 			var rl = Vector2(rx, ry).floor()

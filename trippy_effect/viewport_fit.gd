@@ -8,4 +8,3 @@ func _process(_delta: float) -> void:
 	var scvsize = $'..'.get_viewport().size
 	if int(size.x) != int(scvsize.x) or int(size.y) != int(scvsize.y):
 		size = scvsize
-		print_debug(name, size)

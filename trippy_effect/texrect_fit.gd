@@ -16,7 +16,6 @@ func _process(_delta: float) -> void:
 			pass
 		else:
 			target_pos = Vector2(0, 0)
-		print_debug(name, rect_size)
 	if slide:
 		rect_position = lastlastcampos
 		lastlastcampos = lastcampos

@@ -23,9 +23,10 @@ Theme: Unstable
 - Tasks that jump around and move
 
 ## !!! buggoes
-- rooms created overlapping
 
 ## To do
+- Rooms shouldnt be created below death line
+- Proper death screen
 - Make own sounds
 - Make own music
 - Mute buttons
