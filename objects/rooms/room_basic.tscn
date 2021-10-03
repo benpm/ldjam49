@@ -1,59 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://sprites/prog_bg.png" type="Texture" id=2]
+[ext_resource path="res://objects/room_common.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/job.tscn" type="PackedScene" id=4]
-[ext_resource path="res://sprites/prog_fg.png" type="Texture" id=5]
-[ext_resource path="res://scripts/room.gd" type="Script" id=7]
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 128, 128 )
 
 [node name="room" type="Node2D"]
 z_index = -1
-script = ExtResource( 7 )
 
-[node name="tilemap_fg" type="TileMap" parent="."]
-z_index = -1
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-format = 1
+[node name="room_common" parent="." instance=ExtResource( 2 )]
+
+[node name="tilemap_fg" parent="room_common" index="0"]
 tile_data = PoolIntArray( -196612, 0, 262145, -196611, 0, 262145, -196610, 0, 262148, -196609, 0, 262148, -262144, 0, 262148, -262143, 0, 262148, -262142, 0, 262145, -262141, 0, 262145, -131076, 0, 393217, -196605, 0, 393217, -65540, 0, 393217, -131069, 0, 393217, -4, 0, 393217, -65533, 0, 393217, 65532, 0, 393217, 3, 0, 393217, 262140, 0, 262145, 262141, 0, 262145, 262142, 0, 262148, 262143, 0, 262148, 196608, 0, 262148, 196609, 0, 262148, 196610, 0, 262145, 196611, 0, 262145 )
 
-[node name="tilemap_bg" type="TileMap" parent="."]
-z_index = -2
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 196605, 0, 327682, 131074, 0, 327685 )
-
-[node name="area" type="Area2D" parent="."]
-
-[node name="area_shape" type="CollisionShape2D" parent="area"]
-shape = SubResource( 10 )
+[node name="tilemap_bg" parent="room_common" index="1"]
+tile_data = PoolIntArray( -196612, 0, 393220, -196611, 0, 393220, -196610, 0, 393220, -196609, 0, 393220, -262144, 0, 393220, -262143, 0, 393220, -262142, 0, 393220, -262141, 0, 393220, -131076, 0, 393220, -131075, 0, 393220, -131074, 0, 393221, -131073, 0, 393221, -196608, 0, 393221, -196607, 0, 393220, -196606, 0, 393220, -196605, 0, 393220, -65540, 0, 393220, -65539, 0, 393221, -65538, 0, 393221, -65537, 0, 393220, -131072, 0, 393221, -131071, 0, 393221, -131070, 0, 393220, -131069, 0, 393220, -4, 0, 393220, -3, 0, 393221, -2, 0, 393220, -1, 0, 393220, -65536, 0, 393221, -65535, 0, 393221, -65534, 0, 393220, -65533, 0, 393220, 65532, 0, 393220, 65533, 0, 393221, 65534, 0, 393220, 65535, 0, 393220, 0, 0, 393220, 1, 0, 393220, 2, 0, 393220, 3, 0, 393220, 131068, 0, 393220, 131069, 0, 393221, 131070, 0, 393220, 131071, 0, 393220, 65536, 0, 393221, 65537, 0, 393221, 65538, 0, 393221, 65539, 0, 393221, 196604, 0, 393220, 196605, 0, 393221, 196606, 0, 393221, 196607, 0, 393221, 131072, 0, 393221, 131073, 0, 393220, 131074, 0, 393221, 131075, 0, 393221, 262140, 0, 393220, 262141, 0, 393220, 262142, 0, 393220, 262143, 0, 393220, 196608, 0, 393220, 196609, 0, 393220, 196610, 0, 393220, 196611, 0, 393220 )
 
 [node name="task_chop" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 64 )
 
-[node name="vanish_timer" type="Timer" parent="."]
-wait_time = 15.0
-one_shot = true
-autostart = true
-
-[node name="progress" type="TextureProgress" parent="."]
-margin_left = -128.0
-margin_top = -128.0
-margin_right = -88.0
-margin_bottom = -88.0
-rect_pivot_offset = Vector2( 24, 72 )
-max_value = 30.0
-step = 0.25
-value = 15.0
-texture_under = ExtResource( 2 )
-texture_progress = ExtResource( 5 )
-fill_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="timeout" from="vanish_timer" to="." method="_on_vanish_timer_timeout"]
+[editable path="room_common"]

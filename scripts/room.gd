@@ -6,29 +6,35 @@ export(Vector2) var room_size = Vector2.ONE setget set_room_size
 
 onready var task_node: Task = find_node("task_*")
 onready var timer: Timer = $vanish_timer
+onready var overtimer: Timer = $overtime_timer
 onready var hue: float = rand_range(0.1, 0.9)
 onready var tilemap_fg: TileMap = $tilemap_fg
-onready var progress: TextureProgress = $progress
+onready var bar: TextureProgress = $"progress/bar"
+onready var bar_over: TextureProgress = $"progress/bar_over"
+
+var maxtime: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	modulate.h = hue
+	bar.max_value = Global.max_timer_len
+	bar.value = bar.max_value * rand_range(0.5, 1.0)
+	maxtime = Global.max_timer_len
+	bar_over.max_value = Global.max_timer_len
+	bar_over.value = bar_over.max_value
 
-func _process(_delta):
+func _process(delta):
 	if Engine.editor_hint:
 		modulate = Color.white
 		return
 
 	var t = timer.time_left
 	modulate.h = hue
-	modulate.v = clamp(0.2 + t / 30.0, 0.4, 1.0)
+	modulate.v = clamp(0.2 + t / Global.max_timer_len, 0.4, 1.0)
 	modulate.s = clamp(t / 10.0, 0.0, 0.7)
-	progress.value = t
-	# if t < 5.0:
-	# 	var tt = 0.5 - (t / 5.0)
-	# 	tilemap_fg.position = Vector2(rand_range(tt, tt) * 32, rand_range(tt, tt) * 32)
-	# else:
-	# 	tilemap_fg.position = Vector2.ZERO
+	bar.value = t
+	maxtime -= Global.time_reduce_amnt * delta
+	bar_over.value = maxtime
 
 func set_room_size(val: Vector2):
 	if !Engine.editor_hint:

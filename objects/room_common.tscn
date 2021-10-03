@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/progress.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://scripts/room.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 128 )
+
+[node name="room_common" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="tilemap_fg" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="tilemap_bg" type="TileMap" parent="."]
+z_index = -2
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="area_shape" type="CollisionShape2D" parent="area"]
+modulate = Color( 1, 1, 1, 0.180392 )
+shape = SubResource( 1 )
+
+[node name="vanish_timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="overtime_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="progress" parent="." instance=ExtResource( 1 )]
+position = Vector2( -96, -96 )

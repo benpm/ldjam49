@@ -47,6 +47,7 @@ default_bus_layout="res://audiobuslayout.tres"
 [autoload]
 
 Sounds="*res://scripts/sound_controller.gd"
+Global="*res://scripts/global.gd"
 
 [debug]
 
@@ -60,7 +61,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AsepriteAnimationImporter/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AsepriteAnimationImporter/plugin.cfg", "res://addons/ImportCleaner/plugin.cfg" )
 
 [importer_defaults]
 

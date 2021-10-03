@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
 [ext_resource path="res://art/player.ase" type="SpriteFrames" id=3]
 [ext_resource path="res://objects/rooms/room_basic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://objects/rooms/room_wide.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/game.gd" type="Script" id=6]
 [ext_resource path="res://music.ogg" type="AudioStream" id=12]
 [ext_resource path="res://particles_clouds.tres" type="Material" id=13]
@@ -64,9 +63,6 @@ preprocess = 81.09
 visibility_rect = Rect2( 0, -500, 2000, 1000 )
 process_material = ExtResource( 13 )
 texture = ExtResource( 14 )
-
-[node name="room_wide" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0, 256 )
 
 [node name="room_basic" parent="." instance=ExtResource( 4 )]
 
