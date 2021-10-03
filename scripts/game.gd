@@ -71,7 +71,7 @@ var placed_rooms: Dictionary
 var game_time: float = 0
 
 onready var explode_particles: CPUParticles2D = $"explode"
-onready var score_label: RichTextLabel = $"main_camera/UI_layer/score_label"
+onready var score_label: Label = $"main_camera/UI_layer/score_label"
 onready var death_msgs: Control = $"main_camera/UI_layer/death_msgs"
 
 # Called when the node enters the scene tree for the first time.
@@ -106,7 +106,11 @@ func _ready():
 func _process(delta):
 	if not Global.player.dead:
 		game_time += delta
-		score_label.text = "%4d" % game_time
+		score_label.text = "%d" % game_time
+	else:
+		if Input.is_action_just_pressed("e"):
+			_restart_game()
+			Sounds.play("collapse")
 
 # Called on room creation
 func _on_create_room_timer_timeout():
@@ -185,13 +189,15 @@ func player_died():
 
 func _restart_game():
 	print_debug("RESTART GAME")
-	for r in placed_rooms:
+	for r in placed_rooms.values():
 		r.queue_free()
 	placed_rooms.clear()
 	game_time = 0
 	Global.player.position = Vector2.ZERO
 	Global.player.vel = Vector2.ZERO
 	Global.player.dead = false
+	Global.player.show()
+	death_msgs.hide()
 
 	# Create init room
 	randomize()

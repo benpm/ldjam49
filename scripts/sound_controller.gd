@@ -156,7 +156,7 @@ func play(name: String, pos = null):
 	assert(sounds.has(name))
 	sounds[name].stop()
 	if pos != null:
-		sounds[name].position = (pos - Global.cam.position)
+		sounds[name].position = Global.cam.position
 	sounds[name].play()
 
 # Set sounds to playing or not
@@ -165,7 +165,7 @@ func playing(name: String, playing: bool, pos = null):
 	if sounds[name].playing != playing:
 		sounds[name].playing = playing
 	if pos != null:
-		sounds[name].position = (pos - Global.cam.position)
+		sounds[name].position = Global.cam.position
 
 func unpause(name: String, pos = null) -> void:
 	playing(name, true, pos)
