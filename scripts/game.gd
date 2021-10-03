@@ -69,6 +69,8 @@ func init_effect() -> void:
 var rooms: Array
 var placed_rooms: Dictionary
 
+onready var explode_particles: Particles2D = $"explode"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var rooms_dir = Directory.new()
@@ -150,7 +152,6 @@ func place_room(room_node: Node2D):
 			assert(!placed_rooms.has(rl))
 			placed_rooms[rl] = room_node
 	Global.scene.add_child(room_node)
-	print(placed_rooms)
 
 func remove_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
@@ -160,7 +161,9 @@ func remove_room(room_node: Node2D):
 			var erased = placed_rooms.erase(Vector2(rx, ry).floor())
 			assert(erased)
 	room_node.queue_free()
-	print(placed_rooms)
+	explode_particles.position = room_node.position
+	explode_particles.emitting = true
+	explode_particles.one_shot = true
 
 func _on_room_collapse(room_node: Node2D):
 	remove_room(room_node)

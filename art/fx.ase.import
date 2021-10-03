@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_animation_importer"
+type="SpriteFrames"
+path="res://.import/fx.ase-11c51807f0bb48b21ec10ac07db46036.res"
+
+[deps]
+
+source_file="res://art/fx.ase"
+dest_files=[ "res://.import/fx.ase-11c51807f0bb48b21ec10ac07db46036.res" ]
+
+[params]
+
+extrude=false
+default_direction="Forward"
+default_loop=true
