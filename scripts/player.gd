@@ -41,13 +41,6 @@ func _process(_delta: float) -> void:
 		Sounds.unpause("run", position)
 	else:
 		Sounds.pause("run", position)
-
-	# Fall through one-way platforms
-	if Input.is_action_just_pressed("fall"):
-		if not test_move(transform, Vector2(0, 130)):
-			position.y += 2
-		if vel.y != 0:
-			vel.y = 6
 	
 	# World boundary
 	if position.y > maxy:
@@ -85,6 +78,12 @@ func _physics_process(_delta: float) -> void:
 	
 	# Terminal velocity
 	vel.y = min(vel.y, maxfall)
+
+	# Fall through one-way platforms
+	if Input.is_action_just_pressed("fall"):
+		position.y += 2
+		if vel.y != 0:
+			vel.y = 6
 	
 	# Collision
 	pvel = vel

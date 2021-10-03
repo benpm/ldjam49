@@ -14,6 +14,7 @@ script = ExtResource( 3 )
 z_index = -1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
+show_collision = true
 format = 1
 
 [node name="tilemap_bg" type="TileMap" parent="."]
