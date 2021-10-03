@@ -68,8 +68,10 @@ func init_effect() -> void:
 
 var rooms: Array
 var placed_rooms: Dictionary
+var game_time: float = 0
 
 onready var explode_particles: Particles2D = $"explode"
+onready var score_label: RichTextLabel = $"main_camera/UI_layer/score_label"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -98,8 +100,9 @@ func _ready():
 	init_effect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _process(delta):
+	game_time += delta
+	score_label.text = "%4d" % game_time
 
 # Called on room creation
 func _on_create_room_timer_timeout():
