@@ -1,112 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://sprites/tiles.png" type="Texture" id=1]
+[ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://sprites/prog_bg.png" type="Texture" id=2]
 [ext_resource path="res://objects/job.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/prog_fg.png" type="Texture" id=5]
-[ext_resource path="res://scripts/tileset_extras.gd" type="Script" id=6]
 [ext_resource path="res://scripts/room.gd" type="Script" id=7]
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 32, 0, 0, 0, 0, 0, 32, 0 )
-
-[sub_resource type="TileSet" id=9]
-0/name = "tiles.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 1, 1, 270, 270 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 32, 32 )
-0/autotile/spacing = 2
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 3, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 4, 0 ),
-"one_way": true,
-"one_way_margin": 1.0,
-"shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 5, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 6, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 7, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-script = ExtResource( 6 )
-damageTiles = {
-Vector2( 2, 6 ): "kill",
-Vector2( 3, 9 ): "kill"
-}
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 128, 128 )
@@ -117,10 +15,17 @@ script = ExtResource( 7 )
 
 [node name="tilemap_fg" type="TileMap" parent="."]
 z_index = -1
-tile_set = SubResource( 9 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -196612, 0, 0, -196611, 0, 1, -196610, 0, 4, -196609, 0, 4, -262144, 0, 4, -262143, 0, 4, -262142, 0, 0, -262141, 0, 1, -131076, 0, 2, -196605, 0, 2, -65540, 0, 2, -131069, 0, 2, -4, 0, 2, -65533, 0, 2, 262140, 0, 3, 262141, 0, 0, 262142, 0, 4, 262143, 0, 4, 196608, 0, 4, 196609, 0, 4, 196610, 0, 1, 196611, 0, 0 )
+tile_data = PoolIntArray( -196612, 0, 262145, -196611, 0, 262145, -196610, 0, 262148, -196609, 0, 262148, -262144, 0, 262148, -262143, 0, 262148, -262142, 0, 262145, -262141, 0, 262145, -131076, 0, 393217, -196605, 0, 393217, -65540, 0, 393217, -131069, 0, 393217, -4, 0, 393217, -65533, 0, 393217, 65532, 0, 393217, 3, 0, 393217, 262140, 0, 262145, 262141, 0, 262145, 262142, 0, 262148, 262143, 0, 262148, 196608, 0, 262148, 196609, 0, 262148, 196610, 0, 262145, 196611, 0, 262145 )
+
+[node name="tilemap_bg" type="TileMap" parent="."]
+z_index = -2
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 196605, 0, 327682, 131074, 0, 327685 )
 
 [node name="area" type="Area2D" parent="."]
 
