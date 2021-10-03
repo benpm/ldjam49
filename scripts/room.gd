@@ -7,11 +7,14 @@ onready var task_node: Task = find_node("task_*")
 onready var timer: Timer = $vanish_timer
 onready var hue: float = rand_range(0.1, 0.9)
 onready var tilemap_fg: TileMap = $tilemap_fg
+onready var tilemap_bg: TileMap = $tilemap_bg
 onready var bar: TextureProgress = $"progress/bar"
 onready var bar_over: TextureProgress = $"progress/bar_over"
+onready var fx_anim: AnimationPlayer = $fx_anim
 
 var maxtime: float
 var room_loc: Vector2 = Vector2.ZERO
+var prev_time: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +26,7 @@ func _ready():
 	bar_over.max_value = Global.max_timer_len
 	bar_over.value = bar_over.max_value
 	get_parent().position = room_loc * Global.rtile_size
+	fx_anim.play("appear")
 
 func _process(delta):
 	if Engine.editor_hint:
@@ -37,7 +41,18 @@ func _process(delta):
 	maxtime -= Global.time_reduce_amnt * delta
 	bar_over.value = maxtime
 	if t < 7.0:
-		tilemap_fg.material.set_shader_param("amount",  pow(3.0 * (1.1 - (t / 7.0)), 2.0))
+		var tt = 1.0 - (t / 7.0)
+		var amnt = pow(3.0 * (tt + 0.2), 1.5)
+		tilemap_fg.material.set_shader_param("amount",  amnt)
+		tilemap_bg.material.set_shader_param("amount",  amnt)
+		tilemap_bg.position = Vector2(rand_range(-tt, tt) * 1.5, rand_range(-tt, tt) * 1.5)
+		tilemap_bg.scale = Vector2(1 + rand_range(-tt, tt) * 0.2, 1 + rand_range(-tt, tt) * 0.2)
+	elif prev_time <= 7.0:
+		tilemap_fg.material.set_shader_param("amount",  0)
+		tilemap_bg.material.set_shader_param("amount",  0)
+		tilemap_bg.position = Vector2.ZERO
+		tilemap_bg.scale = Vector2.ZERO
+	prev_time = t
 
 func set_room_extents():
 	if get_parent() and $"area/area_shape":
@@ -51,3 +66,7 @@ func _on_vanish_timer_timeout():
 	Global.game.remove_room(get_parent())
 	# TODO: make explody sound
 	# TODO: vanish animation
+
+
+func _on_fx_anim_animation_finished(anim_name):
+	pass # Replace with function body.

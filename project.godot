@@ -121,6 +121,11 @@ q={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="everything"
+2d_physics/layer_2="excluded"
+
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
