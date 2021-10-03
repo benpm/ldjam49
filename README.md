@@ -14,7 +14,9 @@ Theme: Unstable
 - Tapping tasks should replenish timer as fast as you can tap
 - Room with floatation tank: press button to add water to prevent bob from hitting bottom as water slowly leaks.
 - Object which can sometimes appear (hourglass) which shows time til next room appear
-- 
+- Something to prevent player from just sitting and doing task over and over
+  - Raising sea level
+  - Timer max time gets shorter
 - Name ideas:
   - Psychogoat Collapse
 
