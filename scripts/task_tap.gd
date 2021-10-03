@@ -19,8 +19,9 @@ func _process(delta):
 			.fix_tick(cur_fix_rate)
 			cur_fix_rate *= 1.02
 			keyidx = (keyidx + 1) % keys.size()
-			$sprite.frame = 0
-			$sprite.play()
+			if keyidx == 0:
+				$sprite.frame = 0
+				$sprite.play()
 		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.05)
 	else:
 		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.1)

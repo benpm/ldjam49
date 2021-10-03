@@ -22,7 +22,7 @@ func _ready() -> void:
 			player.stream = stream
 			player.autoplay = false
 			player.bus = "sound fx"
-			player.attenuation = 2.0
+			player.attenuation = 4.0
 			sounds[bname] = player
 			soundFX.add_child(player)
 		fname = audio_dir.get_next()
@@ -34,7 +34,7 @@ func play(name: String, pos = null):
 	assert(sounds.has(name))
 	sounds[name].stop()
 	if pos != null:
-		sounds[name].position = (pos - Global.cam.position) + (viewsize / 2)
+		sounds[name].position = (pos - Global.cam.position)
 	sounds[name].play()
 
 # Set sounds to playing or not
@@ -43,7 +43,7 @@ func playing(name: String, playing: bool, pos = null):
 	if sounds[name].playing != playing:
 		sounds[name].playing = playing
 	if pos != null:
-		sounds[name].position = (pos - Global.cam.position) + (viewsize / 2)
+		sounds[name].position = (pos - Global.cam.position)
 
 func unpause(name: String, pos = null) -> void:
 	playing(name, true, pos)
