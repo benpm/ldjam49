@@ -99,7 +99,8 @@ func _ready():
 	_on_create_room_timer_timeout()
 	_on_create_room_timer_timeout()
 
-	init_effect()
+	if Global.enable_shaders:
+		init_effect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
