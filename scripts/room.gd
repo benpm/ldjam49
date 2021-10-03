@@ -48,12 +48,11 @@ func _process(delta):
 		tilemap_bg.material.set_shader_param("amount",  amnt)
 		tilemap_bg.position = Vector2(rand_range(-tt, tt) * 1.5, rand_range(-tt, tt) * 1.5)
 		tilemap_bg.scale = Vector2(1 + rand_range(-tt, tt) * 0.2, 1 + rand_range(-tt, tt) * 0.2)
-	elif prev_time <= 7.0:
+	else:
 		tilemap_fg.material.set_shader_param("amount",  0)
 		tilemap_bg.material.set_shader_param("amount",  0)
 		tilemap_bg.position = Vector2.ZERO
-		tilemap_bg.scale = Vector2.ZERO
-	prev_time = t
+		tilemap_bg.scale = Vector2.ONE
 
 func set_room_extents():
 	if get_parent() and $"area/area_shape":
