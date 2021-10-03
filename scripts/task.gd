@@ -35,5 +35,8 @@ func _on_exited(body: KinematicBody2D) -> bool:
 	if body.name == "player":
 		sprite.modulate = Color(1.0, 1.0, 1.0, 0.5)
 		active = false
+		sprite.stop()
+		sprite.frame = 0
+		#TODO: Sound here
 		return true
 	return false

@@ -105,53 +105,64 @@ func _on_create_room_timer_timeout():
 	var room_packed: PackedScene = rooms[randi() % rooms.size()]
 	var room_node = room_packed.instance()
 	var room = room_node.get_node("room_common")
+	print_debug("room instantiated size: ", room.room_size)
 	# Search for location to place new room
 	var placed = false
 	var locs = placed_rooms.keys()
 	if locs.size() == 0:
 		print_debug("no place rooms left")
 		return
+	var candirs = [
+		Vector2(1, -1),
+		Vector2(1, 0),
+		Vector2(1, 1),
+		Vector2(-1, -1),
+		Vector2(-1, 0),
+		Vector2(-1, 1),
+		Vector2(0, -1),
+		Vector2(0, 1)
+	]
 	while not placed:
-		var cl: Vector2 = locs[randi() % locs.size()]
-		for lx in range(-1, 2):
-			for ly in range(-1, 2):
-				cl.x += lx
-				cl.y += ly
-				var rs = room.room_size
-				var placeable = true
-				for rx in range(cl.x, cl.x + rs.x):
-					for ry in range(cl.y, cl.y + rs.y):
-						var rl = Vector2(rx, ry)
-						if placed_rooms.has(rl):
-							placeable = false
-						if not placeable: break
-					if not placeable: break
-				if placeable:
-					room.room_loc = cl
-					place_room(room_node)
-					placed = true
-					break
-			if placed: break
+		var sl: Vector2 = locs[randi() % locs.size()]
+		candirs.shuffle()
+		for dir in candirs:
+			var cl = sl + dir
+			var rs = room.room_size
+			var placeable = true
+			for rx in range(cl.x, cl.x + rs.x):
+				for ry in range(cl.y, cl.y + rs.y):
+					var rl = Vector2(rx, ry).floor()
+					if placed_rooms.has(rl):
+						placeable = false
+						break
+				if not placeable: break
+			if placeable:
+				room.room_loc = cl
+				place_room(room_node)
+				placed = true
+				break
 
 func place_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
 	var loc = room.room_loc
+	print_debug("game place room ", room_node.name, room.room_loc, room.room_size)
 	for rx in range(loc.x, loc.x + room.room_size.x):
 		for ry in range(loc.y, loc.y + room.room_size.y):
-			var rl = Vector2(rx, ry)
+			var rl = Vector2(rx, ry).floor()
 			assert(!placed_rooms.has(rl))
 			placed_rooms[rl] = room_node
 	Global.scene.add_child(room_node)
-	print_debug("place room at", room.room_loc, room.position)
+	print(placed_rooms)
 
 func remove_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
 	var loc = room.room_loc
 	for rx in range(loc.x, loc.x + room.room_size.x):
 		for ry in range(loc.y, loc.y + room.room_size.y):
-			var erased = placed_rooms.erase(Vector2(rx, ry))
+			var erased = placed_rooms.erase(Vector2(rx, ry).floor())
 			assert(erased)
 	room_node.queue_free()
+	print(placed_rooms)
 
 func _on_room_collapse(room_node: Node2D):
 	remove_room(room_node)

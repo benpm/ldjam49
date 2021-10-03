@@ -1,8 +1,7 @@
-tool
 extends Node2D
 class_name Room
 
-export(Vector2) var room_size = Vector2.ONE setget set_room_size
+export(Vector2) var room_size = Vector2.ONE
 
 onready var task_node: Task = find_node("task_*")
 onready var timer: Timer = $vanish_timer
@@ -14,24 +13,17 @@ onready var bar_over: TextureProgress = $"progress/bar_over"
 var maxtime: float
 var room_loc: Vector2 = Vector2.ZERO
 
-func _enter_tree():
-	var pp = get_parent().position
-	if pp == Vector2.ZERO and room_loc != Vector2.ZERO:
-		get_parent().position = room_loc * Global.rtile_size
-	elif pp != Vector2.ZERO and room_loc == Vector2.ZERO:
-		room_loc = get_parent().position / Global.rtile_size
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Engine.editor_hint:
-		modulate = Color.white
-		return
+	set_room_extents()
 	modulate.h = hue
 	bar.max_value = Global.max_timer_len
 	bar.value = bar.max_value * rand_range(0.5, 1.0)
 	maxtime = Global.max_timer_len
 	bar_over.max_value = Global.max_timer_len
 	bar_over.value = bar_over.max_value
+	get_parent().position = room_loc * Global.rtile_size
+	print_debug("place room ", get_parent().name, room_loc, room_size, get_parent().position)
 
 func _process(delta):
 	if Engine.editor_hint:
@@ -46,15 +38,11 @@ func _process(delta):
 	maxtime -= Global.time_reduce_amnt * delta
 	bar_over.value = maxtime
 
-func set_room_size(val: Vector2):
-	if !Engine.editor_hint:
-		yield(self, "ready")
+func set_room_extents():
 	if get_parent() and $"area/area_shape":
-		room_size = val
 		$"area/area_shape".shape.extents = room_size * Global.rtile_size
 		$"area/area_shape".position = (room_size * Global.rtile_size) \
 			- Vector2(Global.rtile_size, Global.rtile_size)
-		print_debug($"area/area_shape".position)
 	else:
 		push_warning("room not ready")
 

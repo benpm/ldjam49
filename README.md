@@ -22,11 +22,14 @@ Theme: Unstable
 - Tasks that push u in random directions
 - Tasks that jump around and move
 
+## !!! buggoes
+- rooms created overlapping
+
 ## To do
 - Make own sounds
 - Make own music
 - Mute buttons
-- Better art
+- Animation for room appearing
 - Room shaking animation using a shader
 - Fix special fx
 - Screen shake and warning sound when room about to collapse

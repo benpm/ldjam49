@@ -9,7 +9,7 @@
 [ext_resource path="res://sprites/cloud1-Sheet.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.9941, 14.3806 )
+extents = Vector2( 12.4043, 14.3806 )
 
 [sub_resource type="CanvasItemMaterial" id=2]
 particles_animation = true

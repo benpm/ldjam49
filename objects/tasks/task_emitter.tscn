@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://art/things.ase" type="SpriteFrames" id=1]
+[ext_resource path="res://scripts/task_tap.gd" type="Script" id=2]
+[ext_resource path="res://art/ui.ase" type="SpriteFrames" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 32 )
+
+[node name="task_emitter" type="Area2D"]
+position = Vector2( 0, -32 )
+script = ExtResource( 2 )
+hit_sound = "zap"
+keys = [ "e" ]
+
+[node name="box_collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
+position = Vector2( 0, -8 )
+scale = Vector2( 1.25, 1.25 )
+frames = ExtResource( 1 )
+animation = "emitter"
+frame = 6
+playing = true
+
+[node name="instructions" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -56 )
+frames = ExtResource( 3 )
+animation = "tap_Q_tap_E"
+frame = 1
+playing = true
+
+[connection signal="body_entered" from="." to="." method="_on_entered"]
+[connection signal="body_exited" from="." to="." method="_on_exited"]

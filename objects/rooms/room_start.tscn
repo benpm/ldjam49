@@ -3,10 +3,11 @@
 [ext_resource path="res://objects/room_common.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/tasks/task_chop.tscn" type="PackedScene" id=4]
 
-[node name="room" type="Node2D"]
+[node name="room_start" type="Node2D"]
 z_index = -1
 
 [node name="room_common" parent="." instance=ExtResource( 2 )]
+room_size = null
 
 [node name="tilemap_fg" parent="room_common" index="0"]
 tile_data = PoolIntArray( -196612, 0, 262145, -196611, 0, 262145, -196610, 0, 262148, -196609, 0, 262148, -262144, 0, 262148, -262143, 0, 262148, -262142, 0, 262145, -262141, 0, 262145, -131076, 0, 393217, -196605, 0, 393217, -65540, 0, 393217, -131069, 0, 393217, -4, 0, 393217, -65533, 0, 393217, 65532, 0, 393217, 3, 0, 393217, 262140, 0, 262145, 262141, 0, 262145, 262142, 0, 262148, 262143, 0, 262148, 196608, 0, 262148, 196609, 0, 262148, 196610, 0, 262145, 196611, 0, 262145 )
