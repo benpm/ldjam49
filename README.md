@@ -29,18 +29,19 @@ Theme: Unstable
 - Make own sounds
 - Make own music
 - Mute buttons
-- Animation for room appearing
-- Room shaking animation using a shader
 - Fix special fx
-- Screen shake and warning sound when room about to collapse
+- warning sound when room about to collapse
 - Come up with name
 - Make goat art
-- Something to indicate how close room is to collapsing
+- Score meter
+- Sounds:
+  - emitter noises
 
 ## Stretch
 - Live leaderboard
 - Menu
 - Power ups for movement speed, task speed, # jumps
+- Ghost that follows u
 
 ## Stuff Used
 All assets (eventually) made by me within 48 compo period. I did use these things to help me make the game:

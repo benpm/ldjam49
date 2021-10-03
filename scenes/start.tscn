@@ -101,6 +101,7 @@ z_index = -10
 emitting = false
 amount = 60
 lifetime = 2.0
+one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2( -2000, -2000, 2000, 2000 )
 local_coords = false

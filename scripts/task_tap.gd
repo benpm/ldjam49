@@ -17,13 +17,13 @@ func _process(delta):
 	if active:
 		if Input.is_action_just_pressed(keys[keyidx]):
 			.fix_tick(cur_fix_rate)
-			cur_fix_rate *= 1.07
+			cur_fix_rate *= 1.02
 			keyidx = (keyidx + 1) % keys.size()
 			$sprite.frame = 0
 			$sprite.play()
-		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.1)
+		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.05)
 	else:
-		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.25)
+		cur_fix_rate = lerp(cur_fix_rate, fix_rate, 0.1)
 			
 func _on_entered(body: KinematicBody2D):
 	var entered = ._on_entered(body)

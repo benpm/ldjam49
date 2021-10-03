@@ -152,6 +152,7 @@ func place_room(room_node: Node2D):
 			assert(!placed_rooms.has(rl))
 			placed_rooms[rl] = room_node
 	Global.scene.add_child(room_node)
+	Sounds.play("appear", room_node.position)
 
 func remove_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
@@ -161,6 +162,7 @@ func remove_room(room_node: Node2D):
 			var erased = placed_rooms.erase(Vector2(rx, ry).floor())
 			assert(erased)
 	room_node.queue_free()
+	explode_particles.restart()
 	explode_particles.position = room_node.position
 	explode_particles.emitting = true
 	explode_particles.one_shot = true

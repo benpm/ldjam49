@@ -41,6 +41,7 @@ func _process(delta):
 	maxtime -= Global.time_reduce_amnt * delta
 	bar_over.value = maxtime
 	if t < 7.0:
+		Sounds.unpause("rumble", position)
 		var tt = 1.0 - (t / 7.0)
 		var amnt = pow(3.0 * (tt + 0.2), 1.5)
 		tilemap_fg.material.set_shader_param("amount",  amnt)
@@ -64,6 +65,7 @@ func set_room_extents():
 
 func _on_vanish_timer_timeout():
 	Global.game.remove_room(get_parent())
+	Sounds.play("collapse", position)
 	# TODO: make explody sound
 	# TODO: vanish animation
 

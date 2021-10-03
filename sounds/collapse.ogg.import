@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/collapse.ogg-4eb8f66499101d9b30dd954a6e104e9f.oggstr"
+
+[deps]
+
+source_file="res://sounds/collapse.ogg"
+dest_files=[ "res://.import/collapse.ogg-4eb8f66499101d9b30dd954a6e104e9f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
