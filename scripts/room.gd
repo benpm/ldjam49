@@ -36,6 +36,8 @@ func _process(delta):
 	bar.value = t
 	maxtime -= Global.time_reduce_amnt * delta
 	bar_over.value = maxtime
+	if t < 5.0:
+		tilemap_fg.material.set_shader_param("amount",  5.0 - t)
 
 func set_room_extents():
 	if get_parent() and $"area/area_shape":

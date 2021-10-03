@@ -25,7 +25,6 @@ Theme: Unstable
 ## !!! buggoes
 
 ## To do
-- Rooms shouldnt be created below death line
 - Proper death screen
 - Make own sounds
 - Make own music
