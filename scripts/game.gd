@@ -70,7 +70,7 @@ var rooms: Array
 var placed_rooms: Dictionary
 var game_time: float = 0
 
-onready var explode_particles: Particles2D = $"explode"
+onready var explode_particles: CPUParticles2D = $"explode"
 onready var score_label: RichTextLabel = $"main_camera/UI_layer/score_label"
 onready var death_msgs: Control = $"main_camera/UI_layer/death_msgs"
 

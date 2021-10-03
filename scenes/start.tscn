@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -7,44 +7,46 @@
 [ext_resource path="res://felixtowe-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://scripts/game.gd" type="Script" id=6]
 [ext_resource path="res://music.ogg" type="AudioStream" id=12]
-[ext_resource path="res://particles_clouds.tres" type="Material" id=13]
 [ext_resource path="res://sprites/cloud1-Sheet.png" type="Texture" id=14]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=1]
 size = 64
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=2]
 size = 50
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=3]
 size = 90
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=4]
 size = 150
 outline_size = 4
 outline_color = Color( 0.239216, 0.388235, 0.290196, 1 )
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 12.4043, 14.3806 )
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=6]
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 3
 particles_anim_loop = true
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.111524, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.851301, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CanvasItemMaterial" id=7]
 particles_animation = true
@@ -52,28 +54,8 @@ particles_anim_h_frames = 8
 particles_anim_v_frames = 8
 particles_anim_loop = true
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=8]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0470588, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.861765, 0.907328 ), -0.837438, -0.837438, 0, 0, Vector2( 1, 0 ), -2.36576, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
-
-[sub_resource type="ParticlesMaterial" id=4]
-emission_shape = 2
-emission_box_extents = Vector3( 64, 64, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, 200, 0 )
-initial_velocity = 395.58
-initial_velocity_random = 1.0
-angular_velocity = 49.31
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale_curve = SubResource( 6 )
-anim_offset = 0.34
-anim_offset_random = 1.0
 
 [node name="scene" type="Node2D"]
 z_index = 2
@@ -95,7 +77,7 @@ margin_top = 7.49423
 margin_right = 181.055
 margin_bottom = 80.4942
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "0000"
 scroll_active = false
 __meta__ = {
@@ -115,7 +97,7 @@ margin_left = 389.19
 margin_top = 490.378
 margin_right = 637.19
 margin_bottom = 556.378
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.364706, 0.85098, 0.533333, 1 )
 action_mode = 0
 text = "try again?"
@@ -133,7 +115,7 @@ margin_right = 295.159
 margin_bottom = 2.51984
 rect_scale = Vector2( 0.6, 0.6 )
 rect_pivot_offset = Vector2( 250, 250 )
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 3 )
 text = "your final score was a measly"
 align = 1
 __meta__ = {
@@ -147,7 +129,7 @@ margin_top = 71.7401
 margin_right = 979.44
 margin_bottom = 211.74
 rect_pivot_offset = Vector2( 250, 250 )
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 3 )
 text = "you kinda died"
 align = 1
 
@@ -160,7 +142,7 @@ margin_bottom = 457.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 250, 250 )
 mouse_filter = 2
-custom_fonts/normal_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 4 )
 text = "0000"
 scroll_active = false
 __meta__ = {
@@ -174,7 +156,7 @@ jumpvel = 12.0
 
 [node name="box_collider" type="CollisionShape2D" parent="player"]
 position = Vector2( -0.198425, -14.1626 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="sprite" type="AnimatedSprite" parent="player"]
 position = Vector2( 0, -15.5 )
@@ -191,19 +173,29 @@ default_color = Color( 0.811765, 0.2, 0.2, 1 )
 stream = ExtResource( 12 )
 volume_db = -6.667
 
-[node name="clouds" type="Particles2D" parent="."]
+[node name="clouds" type="CPUParticles2D" parent="."]
 show_behind_parent = true
-material = SubResource( 2 )
+material = SubResource( 6 )
 position = Vector2( -1000, 0 )
 z_index = -10
 amount = 128
 lifetime = 100.0
 preprocess = 81.09
-visibility_rect = Rect2( 0, -500, 2000, 1000 )
-process_material = ExtResource( 13 )
+lifetime_randomness = 0.28
 texture = ExtResource( 14 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1000, 1000 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.8
+scale_amount_random = 0.43
+scale_amount_curve = SubResource( 11 )
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+anim_offset = 1.0
+anim_offset_random = 1.0
 
-[node name="explode" type="Particles2D" parent="."]
+[node name="explode" type="CPUParticles2D" parent="."]
 show_behind_parent = true
 material = SubResource( 7 )
 z_index = -10
@@ -212,10 +204,20 @@ amount = 60
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-visibility_rect = Rect2( -2000, -2000, 2000, 2000 )
 local_coords = false
-process_material = SubResource( 4 )
 texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 64, 64 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, 200 )
+initial_velocity = 395.58
+initial_velocity_random = 1.0
+angular_velocity = 49.31
+angular_velocity_random = 1.0
+scale_amount_curve = SubResource( 8 )
+anim_offset = 0.34
+anim_offset_random = 1.0
 
 [node name="create_room_timer" type="Timer" parent="."]
 wait_time = 30.0
