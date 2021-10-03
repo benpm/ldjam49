@@ -19,25 +19,25 @@ Theme: Unstable
   - Timer max time gets shorter
 - Name ideas:
   - Psychogoat Collapse
+- Tasks that push u in random directions
+- Tasks that jump around and move
 
 ## To do
-- [ ] Make own sounds
-- [ ] Make own music
-- [ ] Room creation system
-- [ ] Mute buttons
-- [ ] Better art
-- [ ] Room shaking animation using a shader
-- [ ] Fix special fx
-- [ ] Screen shake and warning sound when room about to collapse
-- [ ] Come up with name
-- [ ] Make goat art
-- [x] Create wood chopping room
-- [x] Something to indicate how close room is to collapsing
+- Make own sounds
+- Make own music
+- Mute buttons
+- Better art
+- Room shaking animation using a shader
+- Fix special fx
+- Screen shake and warning sound when room about to collapse
+- Come up with name
+- Make goat art
+- Something to indicate how close room is to collapsing
 
 ## Stretch
-- [ ] Live leaderboard
-- [ ] Menu
-- [ ] Power ups for movement speed, task speed, # jumps
+- Live leaderboard
+- Menu
+- Power ups for movement speed, task speed, # jumps
 
 ## Stuff Used
 All assets (eventually) made by me within 48 compo period. I did use these things to help me make the game:

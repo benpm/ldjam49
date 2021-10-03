@@ -5,6 +5,7 @@ export(float) var maxfall: float = 16.0
 export(float) var movespeed: float = 8.0
 export(float) var gravity: float = 0.35
 export(float) var jumpvel: float = 6
+export(float) var fixrate: float = 1.0
 
 onready var sprite: AnimatedSprite = $sprite
 onready var maxy: float = $"/root/scene/world_bottom".position.y;

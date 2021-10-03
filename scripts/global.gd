@@ -9,3 +9,5 @@ var max_timer_len := 30.0
 var room_spawn_interval := 30.0
 var room_spawn_reduce := 0.1
 var rtile_size := 32 * 8
+
+var last_key_press := 0

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Task",
+"class": "HoldTask",
+"language": "GDScript",
+"path": "res://scripts/task_hold.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -19,14 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/room.gd"
 }, {
+"base": "Task",
+"class": "TapTask",
+"language": "GDScript",
+"path": "res://scripts/task_tap.gd"
+}, {
 "base": "Area2D",
 "class": "Task",
 "language": "GDScript",
 "path": "res://scripts/task.gd"
 } ]
 _global_script_class_icons={
+"HoldTask": "",
 "Player": "",
 "Room": "",
+"TapTask": "",
 "Task": ""
 }
 
@@ -98,9 +110,14 @@ fall={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
-interact_primary={
+e={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+q={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
 
