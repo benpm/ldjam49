@@ -12,7 +12,6 @@ position = Vector2( 0, -32 )
 script = ExtResource( 2 )
 hit_sound = "spin"
 keys = [ "q" ]
-fix_rate = null
 
 [node name="box_collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

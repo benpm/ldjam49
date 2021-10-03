@@ -20,7 +20,7 @@ shape = SubResource( 1 )
 modulate = Color( 0.521569, 0.521569, 0.521569, 1 )
 frames = ExtResource( 1 )
 animation = "dynamo"
-frame = 7
+frame = 4
 playing = true
 
 [node name="instructions" type="AnimatedSprite" parent="."]

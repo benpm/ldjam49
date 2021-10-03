@@ -34,7 +34,7 @@ func set_doing(v: bool):
 				room.timer.start(1)
 		else:
 			sprite.stop()
-			if not loop_sound:
+			if not self.loop_sound:
 				Sounds.pause(hit_sound)
 
 func _on_exited(body: KinematicBody2D):

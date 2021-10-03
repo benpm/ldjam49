@@ -23,6 +23,9 @@ func _enter_tree():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Engine.editor_hint:
+		modulate = Color.white
+		return
 	modulate.h = hue
 	bar.max_value = Global.max_timer_len
 	bar.value = bar.max_value * rand_range(0.5, 1.0)

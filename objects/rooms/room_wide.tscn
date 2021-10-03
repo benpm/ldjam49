@@ -13,7 +13,5 @@ tile_data = PoolIntArray( -196612, 0, 262145, -196611, 0, 262145, -196610, 0, 26
 
 [node name="task_chop" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 64 )
-hit_sound = null
-fix_rate = null
 
 [editable path="room_common"]

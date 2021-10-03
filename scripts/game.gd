@@ -21,6 +21,7 @@ func init_effect() -> void:
 	scene_viewport.set_script(viewport_script)
 	scene_viewport.name = "scene_viewport"
 	add_child(scene_viewport)
+	Global.scene = scene_viewport
 	
 	# Re-parent children to scene viewport
 	for child in get_children():
@@ -100,6 +101,7 @@ func _process(_delta):
 
 # Called on room creation
 func _on_create_room_timer_timeout():
+	print_debug("_on_create_room_timer_timeout")
 	var room_packed: PackedScene = rooms[randi() % rooms.size()]
 	var room_node = room_packed.instance()
 	var room = room_node.get_node("room_common")
@@ -107,6 +109,7 @@ func _on_create_room_timer_timeout():
 	var placed = false
 	var locs = placed_rooms.keys()
 	if locs.size() == 0:
+		print_debug("no place rooms left")
 		return
 	while not placed:
 		var cl: Vector2 = locs[randi() % locs.size()]
@@ -138,7 +141,8 @@ func place_room(room_node: Node2D):
 			var rl = Vector2(rx, ry)
 			assert(!placed_rooms.has(rl))
 			placed_rooms[rl] = room_node
-	add_child(room_node)
+	Global.scene.add_child(room_node)
+	print_debug("place room at", room.room_loc, room.position)
 
 func remove_room(room_node: Node2D):
 	var room: Room = room_node.get_node("room_common")
