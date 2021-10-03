@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
@@ -14,6 +14,26 @@
 size = 64
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 90
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 150
+outline_size = 4
+outline_color = Color( 0.239216, 0.388235, 0.290196, 1 )
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -74,7 +94,73 @@ margin_left = 9.05548
 margin_top = 7.49423
 margin_right = 181.055
 margin_bottom = 80.4942
+mouse_filter = 2
 custom_fonts/normal_font = SubResource( 8 )
+text = "0000"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="death_msgs" type="Control" parent="main_camera/UI_layer"]
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="main_camera/UI_layer/death_msgs"]
+anchor_right = 0.125
+anchor_bottom = 0.127
+margin_left = 389.19
+margin_top = 490.378
+margin_right = 637.19
+margin_bottom = 556.378
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.364706, 0.85098, 0.533333, 1 )
+action_mode = 0
+text = "try again?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="death_msg3" type="Label" parent="main_camera/UI_layer/death_msgs"]
+modulate = Color( 0.164706, 0.807843, 0.521569, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.1588
+margin_top = 99.5198
+margin_right = 295.159
+margin_bottom = 2.51984
+rect_scale = Vector2( 0.6, 0.6 )
+rect_pivot_offset = Vector2( 250, 250 )
+custom_fonts/font = SubResource( 9 )
+text = "your final score was a measly"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="death_msg" type="Label" parent="main_camera/UI_layer/death_msgs"]
+modulate = Color( 0.164706, 0.807843, 0.521569, 1 )
+margin_left = 33.4405
+margin_top = 71.7401
+margin_right = 979.44
+margin_bottom = 211.74
+rect_pivot_offset = Vector2( 250, 250 )
+custom_fonts/font = SubResource( 9 )
+text = "you kinda died"
+align = 1
+
+[node name="final_score" type="RichTextLabel" parent="main_camera/UI_layer/death_msgs"]
+modulate = Color( 0.164706, 0.807843, 0.521569, 1 )
+margin_left = 353.0
+margin_top = 302.0
+margin_right = 674.0
+margin_bottom = 457.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 250, 250 )
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 10 )
 text = "0000"
 scroll_active = false
 __meta__ = {
@@ -135,4 +221,5 @@ texture = ExtResource( 4 )
 wait_time = 30.0
 autostart = true
 
+[connection signal="pressed" from="main_camera/UI_layer/death_msgs/Button" to="." method="_restart_game"]
 [connection signal="timeout" from="create_room_timer" to="." method="_on_create_room_timer_timeout"]

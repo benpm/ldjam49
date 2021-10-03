@@ -17,6 +17,7 @@ var jumps: int = 0
 var on_one_way: bool
 var landed: bool
 var stepped: bool
+var dead := false
 
 func _ready() -> void:
 	pass
@@ -98,5 +99,7 @@ func _physics_process(_delta: float) -> void:
 				death()
 
 func death():
-	position = initpos
+	dead = true
 	Sounds.play("die", position)
+	hide()
+	Global.game.player_died()

@@ -9,7 +9,6 @@ onready var lastlastcampos: Vector2 = rect_position
 func _process(_delta: float) -> void:
 	var scvsize = $'..'.get_viewport().size
 	var target_pos: Vector2
-	print_debug(scvsize, OS.get_window_safe_area())
 	if texture.get_size() != rect_size:
 		rect_size = texture.get_size()
 		if reposition:

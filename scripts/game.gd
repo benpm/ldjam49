@@ -72,9 +72,11 @@ var game_time: float = 0
 
 onready var explode_particles: Particles2D = $"explode"
 onready var score_label: RichTextLabel = $"main_camera/UI_layer/score_label"
+onready var death_msgs: Control = $"main_camera/UI_layer/death_msgs"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	death_msgs.hide()
 	var rooms_dir = Directory.new()
 	rooms_dir.open("res://objects/rooms")
 	rooms_dir.list_dir_begin(true, true)
@@ -101,11 +103,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	game_time += delta
-	score_label.text = "%4d" % game_time
+	if not Global.player.dead:
+		game_time += delta
+		score_label.text = "%4d" % game_time
 
 # Called on room creation
 func _on_create_room_timer_timeout():
+	if Global.player.dead:
+		return
 	var room_packed: PackedScene = rooms[randi() % rooms.size()]
 	var room_node = room_packed.instance()
 	var room = room_node.get_node("room_common")
@@ -172,3 +177,27 @@ func remove_room(room_node: Node2D):
 
 func _on_room_collapse(room_node: Node2D):
 	remove_room(room_node)
+
+func player_died():
+	death_msgs.show()
+	death_msgs.get_node("final_score").text = "%d" % game_time
+
+func _restart_game():
+	print_debug("RESTART GAME")
+	for r in placed_rooms:
+		r.queue_free()
+	placed_rooms.clear()
+	game_time = 0
+	Global.player.position = Vector2.ZERO
+	Global.player.vel = Vector2.ZERO
+	Global.player.dead = false
+
+	# Create init room
+	randomize()
+	var room_node = load("res://objects/rooms/room_start.tscn").instance()
+	var room = room_node.get_node("room_common")
+	room.room_size = Vector2.ONE
+	room.room_loc = Vector2.ZERO
+	place_room(room_node)
+	_on_create_room_timer_timeout()
+	_on_create_room_timer_timeout()
