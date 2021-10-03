@@ -1,8 +1,8 @@
 extends Node
 
-onready var cam: Camera2D = find_node("main_camera")
-onready var game: Node2D = find_node("scene")
-onready var player: Player = find_node("player")
+onready var cam: Camera2D = $"/root/scene/main_camera"
+onready var game: Node2D = $"/root/scene/"
+onready var player: Player = $"/root/scene/player"
 
 var time_reduce_amnt := 0.25
 var max_timer_len := 30.0

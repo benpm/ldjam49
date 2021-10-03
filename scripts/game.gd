@@ -88,6 +88,8 @@ func _ready():
 	room.room_size = Vector2.ONE
 	room.room_loc = Vector2.ZERO
 	place_room(room_node)
+	_on_create_room_timer_timeout()
+	_on_create_room_timer_timeout()
 
 	init_effect()
 
@@ -121,6 +123,7 @@ func _on_create_room_timer_timeout():
 						if not placeable: break
 					if not placeable: break
 				if placeable:
+					room.room_loc = cl
 					place_room(room_node)
 					placed = true
 					break
