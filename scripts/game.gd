@@ -130,7 +130,6 @@ func _on_create_room_timer_timeout():
 			if placed: break
 
 func place_room(room_node: Node2D):
-	assert(room_node.name == "room")
 	var room: Room = room_node.get_node("room_common")
 	var loc = room.room_loc
 	for rx in range(loc.x, loc.x + room.room_size.x):
@@ -141,14 +140,13 @@ func place_room(room_node: Node2D):
 	add_child(room_node)
 
 func remove_room(room_node: Node2D):
-	assert(room_node.name == "room")
 	var room: Room = room_node.get_node("room_common")
 	var loc = room.room_loc
 	for rx in range(loc.x, loc.x + room.room_size.x):
 		for ry in range(loc.y, loc.y + room.room_size.y):
 			var erased = placed_rooms.erase(Vector2(rx, ry))
 			assert(erased)
-	remove_child(room_node)
+	room_node.queue_free()
 
 func _on_room_collapse(room_node: Node2D):
 	remove_room(room_node)

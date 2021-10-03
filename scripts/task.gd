@@ -33,6 +33,7 @@ func set_doing(v: bool):
 			sprite.play()
 			if room.maxtime > 1 and room.timer.time_left < 1:
 				room.timer.start(1)
+				print_debug("BLUH")
 		else:
 			sprite.stop()
 			

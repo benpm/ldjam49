@@ -56,6 +56,7 @@ func set_room_size(val: Vector2):
 		push_warning("room not ready")
 
 func _on_vanish_timer_timeout():
-	Global.game._on_room_collapse(get_parent())
+	print_debug("_on_vanish_timer_timeout()")
+	Global.game.remove_room(get_parent())
 	# TODO: make explody sound
 	# TODO: vanish animation
