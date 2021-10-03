@@ -6,13 +6,20 @@ export(Vector2) var room_size = Vector2.ONE setget set_room_size
 
 onready var task_node: Task = find_node("task_*")
 onready var timer: Timer = $vanish_timer
-onready var overtimer: Timer = $overtime_timer
 onready var hue: float = rand_range(0.1, 0.9)
 onready var tilemap_fg: TileMap = $tilemap_fg
 onready var bar: TextureProgress = $"progress/bar"
 onready var bar_over: TextureProgress = $"progress/bar_over"
 
 var maxtime: float
+var room_loc: Vector2 = Vector2.ZERO
+
+func _enter_tree():
+	var pp = get_parent().position
+	if pp == Vector2.ZERO and room_loc != Vector2.ZERO:
+		get_parent().position = room_loc * Global.rtile_size
+	elif pp != Vector2.ZERO and room_loc == Vector2.ZERO:
+		room_loc = get_parent().position / Global.rtile_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,13 +48,14 @@ func set_room_size(val: Vector2):
 		yield(self, "ready")
 	if get_parent() and $"area/area_shape":
 		room_size = val
-		$"area/area_shape".shape.extents = room_size * 128
-		$"area/area_shape".position = (room_size * 128) - Vector2(128, 128)
+		$"area/area_shape".shape.extents = room_size * Global.rtile_size
+		$"area/area_shape".position = (room_size * Global.rtile_size) \
+			- Vector2(Global.rtile_size, Global.rtile_size)
 		print_debug($"area/area_shape".position)
 	else:
 		push_warning("room not ready")
 
 func _on_vanish_timer_timeout():
-	queue_free()
+	$"/root/scene".remove_room(get_parent())
 	# TODO: make explody sound
 	# TODO: vanish animation

@@ -9,10 +9,10 @@ var sounds: Dictionary
 func _ready() -> void:
 
 	# Load all the audio
-	var audioDir = Directory.new()
-	audioDir.open("res://sounds/")
-	audioDir.list_dir_begin(true, true)
-	var fname = audioDir.get_next()
+	var audio_dir = Directory.new()
+	audio_dir.open("res://sounds/")
+	audio_dir.list_dir_begin(true, true)
+	var fname = audio_dir.get_next()
 	while fname:
 		if fname.get_extension() == "ogg":
 			var streamName: String = fname.get_basename()
@@ -26,7 +26,7 @@ func _ready() -> void:
 			streamPlayer.attenuation = 2.0
 			sounds[streamName] = streamPlayer
 			soundFX.add_child(streamPlayer)
-		fname = audioDir.get_next()
+		fname = audio_dir.get_next()
 
 	add_child(soundFX)
 

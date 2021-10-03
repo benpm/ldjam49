@@ -65,11 +65,31 @@ func init_effect() -> void:
 # var a = 2
 # var b = "text"
 
+var rooms: Array
+var placed_rooms: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	init_effect()
+	var rooms_dir = Directory.new()
+	rooms_dir.open("res://objects/rooms")
+	rooms_dir.list_dir_begin(true, true)
+	var fname = rooms_dir.get_next()
+	while fname:
+		print_debug(fname)
+		if fname.get_extension() == "tscn":
+			var room_packed: PackedScene = load("res://objects/rooms/" + fname)
+			rooms.append(room_packed)
+		fname = rooms_dir.get_next()
+	$create_room_timer.start(Global.room_spawn_interval)
+	
+	# Create init room
+	var room_node = load("res://objects/rooms/room_start.tscn").instance()
+	var room = room_node.get_node("room_common")
+	room.room_size = Vector2.ONE
+	room.room_loc = Vector2.ZERO
+	place_room(room_node)
 
+	init_effect()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -77,4 +97,55 @@ func _process(_delta):
 
 # Called on room creation
 func _on_create_room_timer_timeout():
-	pass
+	var room_packed: PackedScene = rooms[randi() % rooms.size()]
+	var room_node = room_packed.instance()
+	var room = room_node.get_node("room_common")
+	# Search for location to place new room
+	var placed = false
+	var locs = placed_rooms.keys()
+	if locs.size() == 0:
+		return
+	while not placed:
+		var cl: Vector2 = locs[randi() % locs.size()]
+		for lx in range(-1, 2):
+			for ly in range(-1, 2):
+				cl.x += lx
+				cl.y += ly
+				var rs = room.room_size
+				var placeable = true
+				for rx in range(cl.x, cl.x + rs.x):
+					for ry in range(cl.y, cl.y + rs.y):
+						var rl = Vector2(rx, ry)
+						if placed_rooms.has(rl):
+							placeable = false
+						if not placeable: break
+					if not placeable: break
+				if placeable:
+					place_room(room_node)
+					placed = true
+					break
+			if placed: break
+
+func place_room(room_node: Node2D):
+	assert(room_node.name == "room")
+	var room: Room = room_node.get_node("room_common")
+	var loc = room.room_loc
+	for rx in range(loc.x, loc.x + room.room_size.x):
+		for ry in range(loc.y, loc.y + room.room_size.y):
+			var rl = Vector2(rx, ry)
+			assert(!placed_rooms.has(rl))
+			placed_rooms[rl] = room_node
+	add_child(room_node)
+
+func remove_room(room_node: Node2D):
+	assert(room_node.name == "room")
+	var room: Room = room_node.get_node("room_common")
+	var loc = room.room_loc
+	for rx in range(loc.x, loc.x + room.room_size.x):
+		for ry in range(loc.y, loc.y + room.room_size.y):
+			var erased = placed_rooms.erase(Vector2(rx, ry))
+			assert(erased)
+	remove_child(room_node)
+
+func _on_room_collapse(room_node: Node2D):
+	remove_room(room_node)

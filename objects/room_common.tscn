@@ -33,10 +33,7 @@ wait_time = 15.0
 one_shot = true
 autostart = true
 
-[node name="overtime_timer" type="Timer" parent="."]
-wait_time = 30.0
-one_shot = true
-autostart = true
-
 [node name="progress" parent="." instance=ExtResource( 1 )]
 position = Vector2( -96, -96 )
+
+[connection signal="timeout" from="vanish_timer" to="." method="_on_vanish_timer_timeout"]
