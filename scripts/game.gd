@@ -83,6 +83,7 @@ func _ready():
 	$create_room_timer.start(Global.room_spawn_interval)
 	
 	# Create init room
+	randomize()
 	var room_node = load("res://objects/rooms/room_start.tscn").instance()
 	var room = room_node.get_node("room_common")
 	room.room_size = Vector2.ONE

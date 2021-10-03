@@ -6,7 +6,7 @@ onready var player: Player = $"/root/scene/player"
 
 var time_reduce_amnt := 0.25
 var max_timer_len := 30.0
-var room_spawn_interval := 30.0
+var room_spawn_interval := 5.0
 var room_spawn_reduce := 0.1
 var rtile_size := 32 * 8
 

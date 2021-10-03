@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hammering.ogg-7451c14f76a5f73b5f66fb573dbf57dd.oggstr"
+
+[deps]
+
+source_file="res://sounds/hammering.ogg"
+dest_files=[ "res://.import/hammering.ogg-7451c14f76a5f73b5f66fb573dbf57dd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

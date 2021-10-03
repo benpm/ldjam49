@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spin.ogg-9d9db9e0dd8f49e859d01e46bb7c6995.oggstr"
+
+[deps]
+
+source_file="res://sounds/spin.ogg"
+dest_files=[ "res://.import/spin.ogg-9d9db9e0dd8f49e859d01e46bb7c6995.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

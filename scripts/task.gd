@@ -2,6 +2,7 @@ extends Area2D
 class_name Task
 
 export(String) var hit_sound := "hit1"
+export(bool) var loop_sound := false
 
 onready var sprite: AnimatedSprite = $"sprite"
 onready var room = $"../room_common"
@@ -16,7 +17,10 @@ func _ready():
 
 func fix_tick(multiplier: float = 1.0):
 	room.timer.start(min(room.maxtime, room.timer.time_left + Global.player.fixrate * multiplier))
-	Sounds.play(hit_sound, position)
+	if loop_sound:
+		Sounds.unpause(hit_sound, position)
+	else:
+		Sounds.play(hit_sound, position)
 			
 func _on_entered(body: KinematicBody2D) -> bool:
 	if not body: return false

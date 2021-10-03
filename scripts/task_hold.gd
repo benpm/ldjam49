@@ -2,6 +2,7 @@ extends Task
 class_name HoldTask
 
 export(Array) var keys: Array
+export(float) var fix_rate: float = 0.50
 
 var doing: bool = false setget set_doing
 
@@ -19,11 +20,10 @@ func _process(delta):
 				held += 1
 			else:
 				held -= 1
-		print_debug(held)
 		set_doing(held == keys.size())
 	if doing:
 		if sprite.frame == 0:
-			.fix_tick(delta)
+			.fix_tick(fix_rate)
 
 func set_doing(v: bool):
 	if v != doing:
@@ -34,6 +34,8 @@ func set_doing(v: bool):
 				room.timer.start(1)
 		else:
 			sprite.stop()
+			if not loop_sound:
+				Sounds.pause(hit_sound)
 
 func _on_exited(body: KinematicBody2D):
 	var exited = ._on_exited(body)

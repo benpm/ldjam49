@@ -16,5 +16,7 @@ tile_data = PoolIntArray( -196612, 0, 393220, -196611, 0, 393220, -196610, 0, 39
 
 [node name="task_wheel" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 64 )
+hit_sound = null
+fix_rate = null
 
 [editable path="room_common"]
