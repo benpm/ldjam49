@@ -1,6 +1,6 @@
 extends Node
 
-const enable_shaders := false
+const enable_shaders := true
 
 onready var cam: Camera2D = $"/root/scene/main_camera"
 onready var game: Node2D = $"/root/scene/"

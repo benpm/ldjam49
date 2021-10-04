@@ -12,7 +12,7 @@ func init_effect() -> void:
 	assert($main_camera, "must have a Camera2D node called 'main_camera'")
 	var camera: Camera2D = $main_camera
 	# Initial viewport size
-	var isize: Vector2 = get_viewport().size
+	var isize: Vector2 = get_viewport_rect().size
 	
 	# Add the scene viewport to hold everything in the scene
 	var scene_viewport: Viewport = Viewport.new()
